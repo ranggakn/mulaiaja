@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MulaiAja - Gak Pake Mikir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .slider-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .slider-label span:last-child {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 20px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            padding: 0;
+            border: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-mulai {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-top: 10px;
+        }
+
+        .btn-mulai:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-mulai:active {
+            transform: translateY(0);
+        }
+
+        /* Timer Screen */
+        .timer-screen {
+            display: none;
+        }
+
+        .timer-display {
+            font-size: 80px;
+            font-weight: bold;
+            color: #667eea;
+            margin: 30px 0;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .task-reminder {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .task-reminder strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .motivation-text {
+            color: #888;
+            font-size: 16px;
+            margin: 15px 0;
+            min-height: 48px;
+            font-style: italic;
+        }
+
+        .btn-stop {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-stop:hover {
+            background: #ff5252;
+        }
+
+        .btn-lanjut {
+            background: #51cf66;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-lanjut:hover {
+            background: #40c057;
+        }
+
+        .completion-message {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .completion-message h2 {
+            color: #51cf66;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .xp-badge {
+            background: #ffd43b;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 1s linear;
+            border-radius: 10px;
+        }
+
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <!-- Screen 1: Input -->
+        <div id="inputScreen">
+            <div class="logo">🐢</div>
+            <h1>MulaiAja</h1>
+            <p class="tagline">Gak pake mikir, langsung pencet aja</p>
+
+            <div class="input-group">
+                <label>🤔 Tugas apa yang lo hindarin sekarang?</label>
+                <input type="text" id="taskName" placeholder="contoh: fisika bab momentum">
+            </div>
+
+            <div class="input-group">
+                <label>📝 Ceritain dikit (opsional):</label>
+                <textarea id="taskDesc" placeholder="Kenapa lo nunda ini? Apa yang lo takutin?"></textarea>
+            </div>
+
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>📊 Seberapa sulit sebenarnya?</span>
+                    <span id="difficultyValue">5</span>
+                </div>
+                <input type="range" id="difficulty" min="1" max="10" value="5">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #aaa;">
+                    <span>Gampang banget</span>
+                    <span>Sulit banget</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>⏰ Estimasi waktu (menit):</label>
+                <input type="number" id="estTime" value="20" min="1" max="480">
+            </div>
+
+            <div class="level-info">
+                <span>🦋 Level: <strong id="userLevel">1</strong></span>
+                <span>⭐ XP: <strong id="userXP">0</strong></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="xpProgress" style="width: 0%"></div>
+            </div>
+
+            <button class="btn-mulai" onclick="startTimer()">
+                ⚡ MULAI 2 MENIT ⚡
+            </button>
+        </div>
+
+        <!-- Screen 2: Timer -->
+        <div id="timerScreen" class="timer-screen">
+            <div class="logo">🐢</div>
+            <h2>Lagi ngerjain bareng lo...</h2>
+
+            <div class="task-reminder">
+                <strong>📋 <span id="activeTask">-</span></strong>
+                <span id="activeDifficulty">Tingkat kesulitan: -</span>
+            </div>
+
+            <div class="timer-display" id="timerDisplay">02:00</div>
+
+            <p class="motivation-text" id="motivationText">
+                Lo cuma perlu 2 menit doang. Gak usah mikir hasil.
+            </p>
+
+            <button class="btn-stop" onclick="stopTimer()">
+                ✋ Berhenti
+            </button>
+            <button class="btn-lanjut hidden" id="btnLanjut" onclick="continueTimer()">
+                🚀 Lanjut 5 menit lagi
+            </button>
+
+            <div class="completion-message" id="completionMessage">
+                <h2>🎉 Mantap!</h2>
+                <p>Lo udah mulai! Itu yang paling sulit.</p>
+                <div class="xp-badge" id="xpEarned">+20 XP</div>
+                <p style="margin-top: 15px; color: #666;" id="completionText"></p>
+                <button class="btn-mulai" onclick="resetApp()" style="margin-top: 20px;">
+                    🔄 Mulai tugas lain
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== STATE ==========
+        let state = {
+            timerSeconds: 120,
+            timerInterval: null,
+            isRunning: false,
+            currentTask: '',
+            taskDifficulty: 5,
+            taskDesc: '',
+            estTime: 20,
+            xp: parseInt(localStorage.getItem('mulaiAjaXP') || '0'),
+            level: parseInt(localStorage.getItem('mulaiAjaLevel') || '1'),
+            totalSessions: parseInt(localStorage.getItem('mulaiAjaSessions') || '0')
+        };
+
+        // Motivasi random
+        const motivations = [
+            "Gak usah bagus, yang penting mulai dulu.",
+            "Lo tau ini gampang kan? Buktikan ke diri sendiri.",
+            "2 menit doang. Itu lebih pendek dari video TikTok.",
+            "Gue di sini nemenin lo. Gak ada yang ngawasin.",
+            "Kalau jelek juga gak papa. Ini cuma latihan.",
+            "Inget: otak lo cuma takut mulai, bukan takut ngerjain.",
+            "Nanti H-1 lo pasti nyesel. Mending 2 menit sekarang.",
+            "Buka aja dulu bukunya. Itu udah menang.",
+            "Satu langkah kecil = 100x lebih baik dari diam.",
+            "Lo bukan males. Lo cuma overwhelmed. Yuk pelan-pelan."
+        ];
+
+        // Kata-kata setelah selesai
+        const completions = [
+            "Lihat? Gak seseram yang lo kira kan?",
+            "Udah mulai aja tuh. Nanti juga keterusan sendiri.",
+            "Gua bangga sama lo. Beneran.",
+            "Ini bukti lo BISA. Ingat perasaan ini.",
+            "Tugasnya masih ada, tapi lo udah lebih deket ke selesai.",
+            "Progress > Perfect. Selalu ingat itu."
+        ];
+
+        // ========== FUNCTIONS ==========
+
+        function updateLevelDisplay() {
+            document.getElementById('userLevel').textContent = state.level;
+            document.getElementById('userXP').textContent = state.xp;
+
+            // XP untuk naik level: level * 100
+            const xpNeeded = state.level * 100;
+            const xpProgress = (state.xp % xpNeeded) / xpNeeded * 100;
+            document.getElementById('xpProgress').style.width = xpProgress + '%';
+        }
+
+        function addXP(amount) {
+            state.xp += amount;
+            const xpNeeded = state.level * 100;
+
+            if (state.xp >= xpNeeded) {
+                state.xp -= xpNeeded;
+                state.level++;
+                // Notifikasi naik level
+                setTimeout(() => {
+                    alert(`🎉 LEVEL UP! Lo sekarang level ${state.level}!\n\n"Mulai pelan-pelan, naik terus."`);
+                }, 500);
+            }
+
+            localStorage.setItem('mulaiAjaXP', state.xp);
+            localStorage.setItem('mulaiAjaLevel', state.level);
+            updateLevelDisplay();
+        }
+
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function startTimer() {
+            // Validasi input
+            const taskName = document.getElementById('taskName').value.trim();
+            if (!taskName) {
+                alert('Isi dulu tugasnya dong! Gak usah malu.');
+                document.getElementById('taskName').focus();
+                return;
+            }
+
+            // Simpan data
+            state.currentTask = taskName;
+            state.taskDifficulty = parseInt(document.getElementById('difficulty').value);
+            state.taskDesc = document.getElementById('taskDesc').value.trim();
+            state.estTime = parseInt(document.getElementById('estTime').value);
+            state.timerSeconds = 120; // 2 menit
+            state.totalSessions++;
+            localStorage.setItem('mulaiAjaSessions', state.totalSessions);
+
+            // Update UI
+            document.getElementById('activeTask').textContent = state.currentTask;
+            document.getElementById('activeDifficulty').textContent =
+                `Tingkat kesulitan: ${state.taskDifficulty}/10 | Estimasi: ${state.estTime} menit`;
+
+            // Switch screen
+            document.getElementById('inputScreen').style.display = 'none';
+            document.getElementById('timerScreen').style.display = 'block';
+            document.getElementById('completionMessage').style.display = 'none';
+            document.getElementById('btnLanjut').classList.add('hidden');
+
+            // Set motivasi random
+            document.getElementById('motivationText').textContent = getRandomItem(motivations);
+
+            // Start timer
+            state.isRunning = true;
+            updateTimerDisplay();
+
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds--;
+                updateTimerDisplay();
+
+                // Update motivasi setiap 30 detik
+                if (state.timerSeconds % 30 === 0 && state.timerSeconds > 0) {
+                    document.getElementById('motivationText').textContent = getRandomItem(motivations);
+                }
+
+                if (state.timerSeconds <= 0) {
+                    completeTimer();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(state.timerSeconds / 60);
+            const seconds = state.timerSeconds % 60;
+            document.getElementById('timerDisplay').textContent =
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function completeTimer() {
+            clearInterval(state.timerInterval);
+            state.isRunning = false;
+
+            // Hitung XP
+            let xpEarned = 20; // Base XP
+            if (state.taskDifficulty <= 3) {
+                xpEarned += 10; // Bonus karena tugas gampang tapi tetep mulai
+            }
+
+            document.getElementById('xpEarned').textContent = `+${xpEarned} XP`;
+            document.getElementById('completionText').textContent = getRandomItem(completions);
+
+            // Tampilkan completion
+            document.getElementById('completionMessage').style.display = 'block';
+            document.getElementById('motivationText').style.display = 'none';
+            document.getElementById('btnLanjut').classList.remove('hidden');
+
+            addXP(xpEarned);
+
+            // Update timer display
+            document.getElementById('timerDisplay').textContent = '00:00';
+            document.getElementById('timerDisplay').style.color = '#51cf66';
+        }
+
+        function stopTimer() {
+            if (state.isRunning) {
+                clearInterval(state.timerInterval);
+                state.isRunning = false;
+
+                const elapsedSeconds = 120 - state.timerSeconds;
+
+                if (elapsedSeconds < 10) {
+                    // Belum ada progress berarti
+                    document.getElementById('completionText').textContent =
+                        `Lo udah mulai ${elapsedSeconds} detik. Gak papa, nanti coba lagi.`;
+                    document.getElementById('xpEarned').textContent = '+5 XP (jujur berhenti)';
+                    addXP(5);
+                } else {
+                    // Ada progress
+                    const xpEarned = Math.floor(elapsedSeconds / 6);
+                    document.getElementById('xpEarned').textContent = `+${xpEarned} XP`;
+                    document.getElementById('completionText').textContent =
+                        `Lo udah maju ${elapsedSeconds} detik. Itu kemajuan, bukan kegagalan.`;
+                    addXP(xpEarned);
+                }
+
+                document.getElementById('completionMessage').style.display = 'block';
+                document.getElementById('motivationText').style.display = 'none';
+                document.getElementById('timerDisplay').style.color = '#ff6b6b';
+                document.getElementById('btnLanjut').classList.add('hidden');
+            }
+        }
+
+        function continueTimer() {
+            // Reset timer screen untuk lanjutan
+            state.timerSeconds = 300; // 5 menit tambahan
+            document.getElementById('completionMessage').style.display = 'none';
+            document.getElementById('motivationText').style.display = 'block';
+            document.getElementById('timerDisplay').style.color = '#667eea';
+            document.getElementById('btnLanjut').classList.add('hidden');
+            document.getElementById('motivationText').textContent = 'Nah gitu dong! 5 menit lagi ya. Lo pasti bisa.';
+
+            state.isRunning = true;
+            updateTimerDisplay();
+
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds--;
+                updateTimerDisplay();
+
+                if (state.timerSeconds <= 0) {
+                    completeTimer();
+                    document.getElementById('btnLanjut').classList.add('hidden');
+                }
+            }, 1000);
+        }
+
+        function resetApp() {
+            // Reset semua
+            clearInterval(state.timerInterval);
+            state.isRunning = false;
+            state.timerSeconds = 120;
+
+            document.getElementById('inputScreen').style.display = 'block';
+            document.getElementById('timerScreen').style.display = 'none';
+            document.getElementById('timerDisplay').style.color = '#667eea';
+            document.getElementById('taskName').value = '';
+            document.getElementById('taskDesc').value = '';
+            document.getElementById('difficulty').value = 5;
+            document.getElementById('difficultyValue').textContent = '5';
+            document.getElementById('estTime').value = 20;
+
+            updateLevelDisplay();
+        }
+
+        // Update difficulty slider value
+        document.getElementById('difficulty').addEventListener('input', function () {
+            document.getElementById('difficultyValue').textContent = this.value;
+        });
+
+        // Keyboard shortcut: Ctrl+Enter untuk mulai
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                if (document.getElementById('inputScreen').style.display !== 'none') {
+                    startTimer();
+                }
+            }
+        });
+
+        // ========== INIT ==========
+        updateLevelDisplay();
+
+        // Tampilkan statistik jika sudah pernah pakai
+        if (state.totalSessions > 0) {
+            console.log(`📊 Statistik MulaiAja:
+🔄 Total sesi: ${state.totalSessions}
+⭐ XP: ${state.xp}
+🦋 Level: ${state.level}
+            `);
+        }
+    </script>
+</body>
+
+</html>
