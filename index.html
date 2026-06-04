@@ -7,6 +7,7 @@
     <title>MulaiAja - Gak Pake Mikir, Langsung Mulai</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
         rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
     <style>
         :root {
             --primary: #667eea;
@@ -1323,6 +1324,10 @@
 
     <!-- ========== SCRIPTS ========== -->
     <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+
         // ========== CUSTOM CURSOR ==========
         const cursor = document.getElementById('cursor');
         const cursorDot = document.getElementById('cursorDot');
