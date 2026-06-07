@@ -4,21 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MulaiAja - Gak Pake Mikir, Langsung Mulai</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="manifest" href="manifest.json">
+    <title>MulaiAja - Gak Pake Mikir</title>
     <style>
-        :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --success: #51cf66;
-            --danger: #ff6b6b;
-            --warning: #ffd43b;
-            --dark: #1a1a2e;
-            --light: #f0f4ff;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -26,1593 +13,598 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--dark);
-            overflow-x: hidden;
-            cursor: default;
-        }
-
-        /* ========== CUSTOM CURSOR ========== */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.2s;
-            mix-blend-mode: difference;
-        }
-
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: white;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* ========== FLOATING PARTICLES ========== */
-        .particles-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: floatUp linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-10vh) scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* ========== HERO SECTION ========== */
-        .hero {
-            position: relative;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
-            min-height: 100vh;
-            flex-wrap: wrap;
-            gap: 80px;
-            z-index: 2;
-        }
-
-        /* Animated background gradient */
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg,
-                    #667eea, #764ba2, #5f27cd, #341f97,
-                    #667eea, #764ba2, #5f27cd);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-
-            25% {
-                background-position: 100% 0%;
-            }
-
-            50% {
-                background-position: 100% 100%;
-            }
-
-            75% {
-                background-position: 0% 100%;
-            }
-        }
-
-        .hero-text {
-            max-width: 550px;
-            color: white;
-            animation: slideInLeft 1s ease;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-emoji {
-            font-size: 80px;
-            display: block;
-            animation: bounceEmoji 2s ease infinite;
-        }
-
-        @keyframes bounceEmoji {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            30% {
-                transform: translateY(-30px);
-            }
-
-            50% {
-                transform: translateY(0);
-            }
-
-            70% {
-                transform: translateY(-15px);
-            }
-
-            85% {
-                transform: translateY(0);
-            }
-        }
-
-        .hero-text h1 {
-            font-size: 64px;
-            font-weight: 800;
-            margin: 10px 0;
-            background: linear-gradient(to right, #fff, #ffd43b, #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s ease infinite;
-            background-size: 200% auto;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 0% center;
-            }
-
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .hero-text .subtitle {
-            font-size: 28px;
-            font-weight: 300;
-            margin-bottom: 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.5s forwards;
-        }
-
-        .hero-text .description {
-            font-size: 18px;
-            line-height: 1.8;
-            margin-bottom: 30px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease 0.8s forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Typewriter effect */
-        .typewriter {
-            color: #ffd43b;
-            font-weight: 600;
-            border-right: 3px solid #ffd43b;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                border-color: #ffd43b;
-            }
-
-            50% {
-                border-color: transparent;
-            }
-        }
-
-        /* CTA Button */
-        .cta-button {
-            position: relative;
-            background: white;
-            color: var(--primary);
-            padding: 20px 50px;
-            font-size: 22px;
-            font-weight: 700;
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            overflow: hidden;
-            transition: all 0.3s;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            animation: pulse 2s ease infinite;
-            z-index: 1;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-            }
-
-            50% {
-                box-shadow: 0 20px 60px rgba(255, 212, 59, 0.6);
-            }
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(255, 212, 59, 0.7);
-        }
-
-        .cta-button:active {
-            transform: scale(0.95);
-        }
-
-        .cta-button .sparkle {
-            position: absolute;
-            pointer-events: none;
-        }
-
-        /* ========== PHONE MOCKUP ========== */
-        .phone-wrapper {
-            animation: slideInRight 1s ease, floatPhone 6s ease infinite;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes floatPhone {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .phone-mockup {
-            position: relative;
-            width: 340px;
-            height: 680px;
-            background: #1a1a1a;
-            border-radius: 45px;
-            padding: 18px;
-            box-shadow:
-                0 40px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 3px #333,
-                inset 0 0 0 2px #444;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            background: white;
-            border-radius: 32px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .phone-notch {
-            width: 130px;
-            height: 32px;
-            background: #1a1a1a;
-            border-radius: 0 0 22px 22px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 20;
-        }
-
-        /* Status bar */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* ========== APP SCREENS ========== */
-        .app-screen {
-            width: 100%;
-            height: calc(100% - 32px);
             padding: 20px;
-            display: none;
-            flex-direction: column;
+        }
+
+        .container {
             background: white;
-            color: #333;
-            position: absolute;
-            top: 32px;
-            left: 0;
-            overflow-y: auto;
-        }
-
-        .app-screen.active {
-            display: flex;
-            animation: screenSlideIn 0.4s ease;
-        }
-
-        @keyframes screenSlideIn {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .app-header {
+            border-radius: 24px;
+            padding: 40px 30px;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             text-align: center;
-            margin-bottom: 15px;
         }
 
-        .app-logo {
-            font-size: 40px;
-            animation: logoSpin 3s ease infinite;
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
         }
 
-        @keyframes logoSpin {
-            0% {
-                transform: rotate(0deg) scale(1);
-            }
-
-            25% {
-                transform: rotate(5deg) scale(1.1);
-            }
-
-            50% {
-                transform: rotate(0deg) scale(1);
-            }
-
-            75% {
-                transform: rotate(-5deg) scale(1.1);
-            }
-
-            100% {
-                transform: rotate(0deg) scale(1);
-            }
-        }
-
-        .app-header h3 {
-            font-size: 20px;
-            font-weight: 700;
+        h1 {
             color: #333;
+            font-size: 28px;
+            margin-bottom: 5px;
         }
 
-        .app-header .tagline {
-            font-size: 10px;
-            color: #999;
+        .tagline {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 30px;
             font-style: italic;
         }
 
-        /* ========== FORM ELEMENTS ========== */
         .input-group {
-            margin-bottom: 12px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
-        .input-group label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 4px;
+        label {
             display: block;
+            color: #555;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        .input-group input,
-        .input-group textarea {
+        input,
+        textarea {
             width: 100%;
-            padding: 10px 14px;
+            padding: 14px 16px;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 12px;
-            font-family: inherit;
+            border-radius: 12px;
+            font-size: 16px;
             transition: all 0.3s;
-            background: #fafafa;
+            font-family: inherit;
         }
 
-        .input-group input:focus,
-        .input-group textarea:focus {
+        input:focus,
+        textarea:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            background: white;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
         }
 
         .slider-group {
-            margin-bottom: 18px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .slider-label {
             display: flex;
             justify-content: space-between;
-            font-size: 11px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 5px;
+            align-items: center;
+            margin-bottom: 8px;
         }
 
-        .slider-value {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.3s;
+        .slider-label span:last-child {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 20px;
         }
 
         input[type="range"] {
             width: 100%;
             height: 8px;
+            -webkit-appearance: none;
             appearance: none;
-            background: linear-gradient(to right, #51cf66, #ffd43b, #ff6b6b);
+            background: #e0e0e0;
             border-radius: 10px;
             outline: none;
+            padding: 0;
+            border: none;
         }
 
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
+            appearance: none;
             width: 28px;
             height: 28px;
-            background: white;
-            border: 3px solid var(--primary);
+            background: #667eea;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.2s;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
         }
 
         .btn-mulai {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            padding: 16px;
-            font-size: 18px;
-            font-weight: 700;
+            padding: 18px 40px;
+            font-size: 20px;
+            font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: auto;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            width: 100%;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-top: 10px;
         }
 
         .btn-mulai:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
 
         .btn-mulai:active {
-            transform: scale(0.95);
+            transform: translateY(0);
         }
 
-        /* Ripple effect */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
+        /* Timer Screen */
+        .timer-screen {
+            display: none;
         }
 
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        /* ========== TIMER SCREEN ========== */
         .timer-display {
             font-size: 80px;
-            font-weight: 800;
-            color: var(--primary);
-            text-align: center;
+            font-weight: bold;
+            color: #667eea;
             margin: 30px 0;
             font-variant-numeric: tabular-nums;
-            animation: timerGlow 2s ease infinite;
-        }
-
-        @keyframes timerGlow {
-
-            0%,
-            100% {
-                text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-            }
-
-            50% {
-                text-shadow: 0 0 40px rgba(102, 126, 234, 0.6);
-            }
-        }
-
-        .timer-ring {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-        }
-
-        .timer-ring svg {
-            transform: rotate(-90deg);
-        }
-
-        .timer-ring circle {
-            fill: none;
-            stroke-width: 8;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 1s linear;
-        }
-
-        .timer-bg {
-            stroke: #e8ecff;
-        }
-
-        .timer-progress {
-            stroke: var(--primary);
-            stroke-dasharray: 565;
-            stroke-dashoffset: 0;
         }
 
         .task-reminder {
             background: #f0f4ff;
-            padding: 12px;
+            padding: 15px;
             border-radius: 12px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 11px;
-            animation: slideDown 0.5s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 14px;
         }
 
         .task-reminder strong {
-            display: block;
-            font-size: 13px;
             color: #333;
-            margin-bottom: 3px;
+            display: block;
+            margin-bottom: 5px;
         }
 
         .motivation-text {
             color: #888;
-            font-size: 12px;
-            text-align: center;
-            margin: 10px 0;
+            font-size: 16px;
+            margin: 15px 0;
+            min-height: 48px;
             font-style: italic;
-            animation: fadeText 3s ease infinite;
-        }
-
-        @keyframes fadeText {
-
-            0%,
-            100% {
-                opacity: 0.6;
-            }
-
-            50% {
-                opacity: 1;
-            }
         }
 
         .btn-stop {
             background: #ff6b6b;
             color: white;
             border: none;
-            padding: 12px;
-            font-size: 14px;
+            padding: 14px 30px;
+            font-size: 16px;
             border-radius: 50px;
             cursor: pointer;
-            margin-top: auto;
+            margin-top: 10px;
             transition: all 0.3s;
         }
 
         .btn-stop:hover {
-            background: #ee5a5a;
-            transform: scale(1.02);
-        }
-
-        /* ========== COMPLETION SCREEN ========== */
-        .completion-icon {
-            font-size: 80px;
-            text-align: center;
-            animation: celebrationBounce 0.6s ease;
-        }
-
-        @keyframes celebrationBounce {
-            0% {
-                transform: scale(0);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-
-            70% {
-                transform: scale(0.9);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .completion-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--success);
-            text-align: center;
-            animation: slideDown 0.5s ease 0.2s both;
-        }
-
-        .xp-badge {
-            background: linear-gradient(135deg, #ffd43b, #ffa502);
-            color: #333;
-            padding: 12px 24px;
-            border-radius: 25px;
-            display: inline-block;
-            font-weight: 700;
-            font-size: 18px;
-            animation: xpPopIn 0.5s ease 0.4s both;
-            box-shadow: 0 5px 20px rgba(255, 212, 59, 0.5);
-        }
-
-        @keyframes xpPopIn {
-            0% {
-                opacity: 0;
-                transform: scale(0) rotate(-180deg);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        .completion-msg {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            margin: 10px 0;
-            font-style: italic;
-            animation: fadeInUp 0.5s ease 0.6s both;
-        }
-
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: auto;
+            background: #ff5252;
         }
 
         .btn-lanjut {
-            background: var(--success);
+            background: #51cf66;
             color: white;
             border: none;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 600;
+            padding: 14px 30px;
+            font-size: 16px;
             border-radius: 50px;
             cursor: pointer;
+            margin-top: 10px;
+            margin-left: 10px;
             transition: all 0.3s;
         }
 
         .btn-lanjut:hover {
             background: #40c057;
-            transform: scale(1.02);
         }
 
-        .btn-reset {
-            background: #e0e0e0;
+        .completion-message {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .completion-message h2 {
+            color: #51cf66;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .xp-badge {
+            background: #ffd43b;
             color: #333;
-            border: none;
-            padding: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .btn-reset:hover {
-            background: #d0d0d0;
-        }
-
-        /* ========== CONFETTI ========== */
-        .confetti-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .confetti-piece {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            animation: confettiFall linear forwards;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(-100%) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* ========== FEATURES SECTION ========== */
-        .features {
-            background: white;
-            color: #333;
-            padding: 100px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .features h2 {
-            font-size: 42px;
-            margin-bottom: 60px;
-            color: var(--primary);
-            position: relative;
+            padding: 10px 20px;
+            border-radius: 20px;
             display: inline-block;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
-        .features h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--warning);
-            border-radius: 2px;
+        .hidden {
+            display: none;
         }
 
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            padding: 40px 30px;
-            border-radius: 24px;
-            background: white;
-            border: 2px solid #e8ecff;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .progress-bar {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card .icon {
-            font-size: 52px;
-            margin-bottom: 20px;
-            display: block;
-            transition: transform 0.4s;
-        }
-
-        .feature-card:hover .icon {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            position: relative;
-        }
-
-        .feature-card p {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        /* ========== STATS COUNTER ========== */
-        .stats-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .stats-grid {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            color: white;
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 800;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            opacity: 0.8;
-            margin-top: 5px;
-        }
-
-        /* ========== TESTIMONIAL ========== */
-        .testimonial {
-            padding: 100px 20px;
-            text-align: center;
-            background: #f8f9ff;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-card {
-            background: white;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            animation: floatCard 6s ease infinite;
-        }
-
-        @keyframes floatCard {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .testimonial-card .quote-icon {
-            font-size: 60px;
-            color: var(--primary);
-            opacity: 0.3;
-        }
-
-        .testimonial-card blockquote {
-            font-size: 18px;
-            font-style: italic;
-            line-height: 1.8;
-            color: #555;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 10px;
             margin: 20px 0;
+            overflow: hidden;
         }
 
-        .testimonial-card cite {
-            display: block;
-            font-style: normal;
-            font-weight: 700;
-            color: var(--primary);
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            transition: width 1s linear;
+            border-radius: 10px;
         }
 
-        /* ========== CTA SECTION ========== */
-        .cta-section {
-            padding: 100px 20px;
-            text-align: center;
-            background: var(--dark);
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-section h2 {
-            font-size: 48px;
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .cta-section p {
-            font-size: 20px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 40px;
-        }
-
-        /* ========== SCROLL INDICATOR ========== */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scrollBounce 2s ease infinite;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        @keyframes scrollBounce {
-
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            50% {
-                transform: translateX(-50%) translateY(20px);
-            }
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 30px;
-            height: 30px;
-            border-right: 3px solid white;
-            border-bottom: 3px solid white;
-            transform: rotate(45deg);
-        }
-
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding: 40px 15px;
-                gap: 40px;
-            }
-
-            .hero-text h1 {
-                font-size: 40px;
-            }
-
-            .hero-text .subtitle {
-                font-size: 20px;
-            }
-
-            .phone-mockup {
-                width: 280px;
-                height: 560px;
-                padding: 14px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 36px;
-            }
-
-            .cursor,
-            .cursor-dot {
-                display: none;
-            }
+        .level-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 
 <body>
-
-    <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
-
-    <!-- Floating Particles -->
-    <div class="particles-container" id="particles"></div>
-
-    <!-- ========== HERO SECTION ========== -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-
-        <div class="hero-text">
-            <span class="hero-emoji">📅</span>
+    <div class="container" id="app">
+        <!-- Screen 1: Input -->
+        <div id="inputScreen">
+            <div class="logo">📅</div>
             <h1>MulaiAja</h1>
-            <p class="subtitle">
-                <span id="typewriter"></span>
-            </p>
-            <p class="description">
-                Lo tau tugas itu gampang. Tapi entah kenapa <strong>susah banget mulai</strong>.
-                <br><br>
-                <strong style="color: #ffd43b;">MulaiAja</strong> bantu lo mulai cuma dalam
-                <span style="color: #51cf66; font-size: 24px; font-weight: 700;">2 menit</span>.
-                Ditemenin, gak dihakimi, dan dikasih XP tiap kali lo berani mulai.
-            </p>
-            <a href="mulaiaja.html" class="cta-button">Coba Aplikasinya Sekarang</a>
-        </div>
+            <p class="tagline">Gak pake mikir, langsung pencet aja</p>
 
-        <!-- Phone Mockup -->
-        <div class="phone-wrapper">
-            <div class="phone-mockup">
-                <div class="phone-screen" id="phoneScreen">
-                    <div class="phone-notch"></div>
+            <div class="input-group">
+                <label>🤔 Tugas apa yang lo hindarin sekarang?</label>
+                <input type="text" id="taskName" placeholder="contoh: fisika bab momentum">
+            </div>
 
-                    <!-- Screen 1: Input -->
-                    <div class="app-screen active" id="screen1">
-                        <div class="app-header">
-                            <div class="app-logo">📅</div>
-                            <h3>MulaiAja</h3>
-                            <p class="tagline">Gak pake mikir, langsung pencet</p>
-                        </div>
+            <div class="input-group">
+                <label>📝 Ceritain dikit (opsional):</label>
+                <textarea id="taskDesc" placeholder="Kenapa lo nunda ini? Apa yang lo takutin?"></textarea>
+            </div>
 
-                        <div class="input-group">
-                            <label>🤔 Tugas apa yang lo hindarin?</label>
-                            <input type="text" value="Fisika bab momentum" readonly>
-                        </div>
-
-                        <div class="input-group">
-                            <label>📝 Ceritain dikit:</label>
-                            <textarea rows="2"
-                                readonly>Gampang sih, cuma 15 menit. Tapi entah kenapa males banget mulainya...</textarea>
-                        </div>
-
-                        <div class="slider-group">
-                            <div class="slider-label">
-                                <span>📊 Tingkat kesulitan</span>
-                                <span class="slider-value" id="sliderValue">3/10</span>
-                            </div>
-                            <input type="range" value="3" min="1" max="10" id="difficultySlider"
-                                oninput="updateSlider()">
-                            <div
-                                style="display:flex;justify-content:space-between;font-size:9px;color:#aaa;margin-top:3px;">
-                                <span>😊 Gampang</span>
-                                <span>😰 Sulit</span>
-                            </div>
-                        </div>
-
-                        <div class="input-group">
-                            <label>⏰ Estimasi waktu</label>
-                            <input type="text" value="20 menit" readonly>
-                        </div>
-
-                        <button class="btn-mulai" onclick="switchPhoneScreen(2)">
-                            ⚡ MULAI 2 MENIT
-                        </button>
-                    </div>
-
-                    <!-- Screen 2: Timer -->
-                    <div class="app-screen" id="screen2">
-                        <div class="app-header">
-                            <div class="app-logo">📅</div>
-                            <h3>Lagi ngerjain bareng lo...</h3>
-                        </div>
-
-                        <div class="task-reminder">
-                            <strong>📋 Fisika bab momentum</strong>
-                            Tingkat kesulitan: 3/10 | Estimasi: 20 menit
-                        </div>
-
-                        <div class="timer-ring">
-                            <svg width="200" height="200" viewBox="0 0 200 200">
-                                <circle class="timer-bg" cx="100" cy="100" r="90"></circle>
-                                <circle class="timer-progress" id="timerCircle" cx="100" cy="100" r="90"></circle>
-                            </svg>
-                            <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:48px;font-weight:800;color:#667eea;"
-                                id="timerText">
-                                02:00
-                            </div>
-                        </div>
-
-                        <p class="motivation-text" id="motivationText">
-                            "Lo cuma perlu 2 menit doang. Gak usah mikir hasil."
-                        </p>
-
-                        <button class="btn-stop" onclick="switchPhoneScreen(3)">
-                            ✋ Selesai / Berhenti
-                        </button>
-                    </div>
-
-                    <!-- Screen 3: Completion -->
-                    <div class="app-screen" id="screen3">
-                        <div class="completion-icon">🎉</div>
-                        <div class="completion-title">Mantap Banget!</div>
-
-                        <p class="completion-msg">
-                            Lo udah mulai! Itu yang paling sulit.<br>
-                            Gak seseram yang lo kira kan?
-                        </p>
-
-                        <div style="text-align:center;margin:15px 0;">
-                            <div class="xp-badge">⭐ +20 XP</div>
-                        </div>
-
-                        <div class="btn-group">
-                            <button class="btn-lanjut" onclick="switchPhoneScreen(2)">
-                                🚀 Lanjut 5 menit lagi
-                            </button>
-                            <button class="btn-reset" onclick="switchPhoneScreen(1)">
-                                🔄 Kerjain tugas lain
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Confetti Container -->
-                    <div class="confetti-container" id="confettiContainer"></div>
+            <div class="slider-group">
+                <div class="slider-label">
+                    <span>📊 Seberapa sulit sebenarnya?</span>
+                    <span id="difficultyValue">5</span>
+                </div>
+                <input type="range" id="difficulty" min="1" max="10" value="5">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; color: #aaa;">
+                    <span>Gampang banget</span>
+                    <span>Sulit banget</span>
                 </div>
             </div>
+
+            <div class="input-group">
+                <label>⏰ Estimasi waktu (menit):</label>
+                <input type="number" id="estTime" value="20" min="1" max="480">
+            </div>
+
+            <div class="level-info">
+                <span>🦋 Level: <strong id="userLevel">1</strong></span>
+                <span>⭐ XP: <strong id="userXP">0</strong></span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="xpProgress" style="width: 0%"></div>
+            </div>
+
+            <button class="btn-mulai" onclick="startTimer()">
+                ⚡ MULAI 2 MENIT ⚡
+            </button>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator" onclick="scrollToDemo()">
-            <span></span>
-        </div>
-    </section>
+        <!-- Screen 2: Timer -->
+        <div id="timerScreen" class="timer-screen">
+            <div class="logo">📅</div>
+            <h2>Lagi ngerjain bareng lo...</h2>
 
-    <!-- ========== FEATURES SECTION ========== -->
-    <section class="features" id="features">
-        <h2>✨ Kenapa MulaiAja?</h2>
-        <div class="feature-grid">
-            <div class="feature-card"
-                onmouseenter="this.querySelector('.icon').style.animation='none'; this.querySelector('.icon').offsetHeight; this.querySelector('.icon').style.animation='bounceEmoji 0.5s ease'">
-                <span class="icon">⚡</span>
-                <h3>2 Menit Aja</h3>
-                <p>Cukup 2 menit untuk mulai. Lebih pendek dari video TikTok. Setelah mulai, lo bakal keterusan sendiri.
-                </p>
+            <div class="task-reminder">
+                <strong>📋 <span id="activeTask">-</span></strong>
+                <span id="activeDifficulty">Tingkat kesulitan: -</span>
             </div>
-            <div class="feature-card">
-                <span class="icon">🤝</span>
-                <h3>Ditemenin, Gak Dihakimi</h3>
-                <p>Gue ngerti lo bukan males. Lo cuma overwhelmed. MulaiAja nemenin lo mulai tanpa judgment sedikitpun.
-                </p>
-            </div>
-            <div class="feature-card">
-                <span class="icon">🎮</span>
-                <h3>Produktif Tapi Fun</h3>
-                <p>Dapetin XP & naik level tiap kali lo mulai. Bahkan kalau gagal mulai pun tetep dapet XP karena udah
-                    JUJUR.</p>
-            </div>
-            <div class="feature-card">
-                <span class="icon">🧠</span>
-                <h3>By Prokrastinator</h3>
-                <p>Dibuat oleh prokrastinator yang paham banget rasanya nunda. Ini aplikasi yang gue sendiri butuhin.
-                </p>
+
+            <div class="timer-display" id="timerDisplay">02:00</div>
+
+            <p class="motivation-text" id="motivationText">
+                Lo cuma perlu 2 menit doang. Gak usah mikir hasil.
+            </p>
+
+            <button class="btn-stop" onclick="stopTimer()">
+                ✋ Berhenti
+            </button>
+            <button class="btn-lanjut hidden" id="btnLanjut" onclick="continueTimer()">
+                🚀 Lanjut 5 menit lagi
+            </button>
+
+            <div class="completion-message" id="completionMessage">
+                <h2>🎉 Mantap!</h2>
+                <p>Lo udah mulai! Itu yang paling sulit.</p>
+                <div class="xp-badge" id="xpEarned">+20 XP</div>
+                <p style="margin-top: 15px; color: #666;" id="completionText"></p>
+                <button class="btn-mulai" onclick="resetApp()" style="margin-top: 20px;">
+                    🔄 Mulai tugas lain
+                </button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- ========== STATS SECTION ========== -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number" data-target="10000">0</span>
-                <span class="stat-label">Tugas Dimulai</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="5000">0</span>
-                <span class="stat-label">Prokrastinator Terbantu</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" data-target="98">0</span>
-                <span class="stat-label">% Merasa Lebih Baik</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== TESTIMONIAL ========== -->
-    <section class="testimonial">
-        <div class="testimonial-card">
-            <div class="quote-icon">"</div>
-            <blockquote>
-                Gue selalu nunda tugas sampe H-1. Tapi sejak pakai MulaiAja, gue sadar kalau mulai itu gak seseram yang
-                gue kira. Sekarang gue berani mulai lebih awal tanpa overthinking.
-            </blockquote>
-            <cite>— Prokrastinator yang mulai sembuh 📅</cite>
-        </div>
-    </section>
-
-    <!-- ========== CTA SECTION ========== -->
-    <section class="cta-section">
-        <h2>Siap Mulai?</h2>
-        <p>Gak usah nunggu besok. Gak usah nunggu mood bagus.</p>
-        <button class="cta-button" onclick="scrollToDemo()" href="index.html">
-            📅 MulaiAja Sekarang
-        </button>
-    </section>
-
-    <!-- ========== SCRIPTS ========== -->
     <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js');
-        }
+        // ========== STATE ==========
+        let state = {
+            timerSeconds: 120,
+            timerInterval: null,
+            isRunning: false,
+            currentTask: '',
+            taskDifficulty: 5,
+            taskDesc: '',
+            estTime: 20,
+            xp: parseInt(localStorage.getItem('mulaiAjaXP') || '0'),
+            level: parseInt(localStorage.getItem('mulaiAjaLevel') || '1'),
+            totalSessions: parseInt(localStorage.getItem('mulaiAjaSessions') || '0')
+        };
 
-        // ========== CUSTOM CURSOR ==========
-        const cursor = document.getElementById('cursor');
-        const cursorDot = document.getElementById('cursorDot');
-
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
-            cursorDot.style.left = e.clientX - 3 + 'px';
-            cursorDot.style.top = e.clientY - 3 + 'px';
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'scale(1.5)';
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'scale(1)';
-        });
-
-        // ========== FLOATING PARTICLES ==========
-        const particlesContainer = document.getElementById('particles');
-        const colors = ['#667eea', '#764ba2', '#ffd43b', '#51cf66', '#ff6b6b', '#fff'];
-
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.width = (Math.random() * 8 + 2) + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
-            particle.style.animationDelay = Math.random() * 5 + 's';
-
-            particlesContainer.appendChild(particle);
-
-            setTimeout(() => {
-                particle.remove();
-            }, 15000);
-        }
-
-        // Create initial particles
-        for (let i = 0; i < 20; i++) {
-            setTimeout(createParticle, Math.random() * 5000);
-        }
-
-        // Continuous particle creation
-        setInterval(createParticle, 1000);
-
-        // ========== TYPEWRITER EFFECT ==========
-        const typewriterTexts = [
-            'Gak pake mikir.',
-            'Langsung mulai aja.',
-            '2 menit doang.',
-            'Lo pasti bisa.',
-            'Ditemenin kok.'
+        // Motivasi random
+        const motivations = [
+            "Gak usah bagus, yang penting mulai dulu.",
+            "Lo tau ini gampang kan? Buktikan ke diri sendiri.",
+            "2 menit doang. Itu lebih pendek dari video TikTok.",
+            "Gue di sini nemenin lo. Gak ada yang ngawasin.",
+            "Kalau jelek juga gak papa. Ini cuma latihan.",
+            "Inget: otak lo cuma takut mulai, bukan takut ngerjain.",
+            "Nanti H-1 lo pasti nyesel. Mending 2 menit sekarang.",
+            "Buka aja dulu bukunya. Itu udah menang.",
+            "Satu langkah kecil = 100x lebih baik dari diam.",
+            "Lo bukan males. Lo cuma overwhelmed. Yuk pelan-pelan."
         ];
 
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriterElement = document.getElementById('typewriter');
+        // Kata-kata setelah selesai
+        const completions = [
+            "Lihat? Gak seseram yang lo kira kan?",
+            "Udah mulai aja tuh. Nanti juga keterusan sendiri.",
+            "Gua bangga sama lo. Beneran.",
+            "Ini bukti lo BISA. Ingat perasaan ini.",
+            "Tugasnya masih ada, tapi lo udah lebih deket ke selesai.",
+            "Progress > Perfect. Selalu ingat itu."
+        ];
 
-        function typeWriter() {
-            const currentText = typewriterTexts[textIndex];
+        // ========== FUNCTIONS ==========
 
-            if (!isDeleting) {
-                typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
+        function updateLevelDisplay() {
+            document.getElementById('userLevel').textContent = state.level;
+            document.getElementById('userXP').textContent = state.xp;
 
-                if (charIndex === currentText.length) {
-                    isDeleting = true;
-                    setTimeout(typeWriter, 2000);
-                    return;
-                }
-            } else {
-                typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-
-                if (charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % typewriterTexts.length;
-                }
-            }
-
-            setTimeout(typeWriter, isDeleting ? 50 : 100);
+            // XP untuk naik level: level * 100
+            const xpNeeded = state.level * 100;
+            const xpProgress = (state.xp % xpNeeded) / xpNeeded * 100;
+            document.getElementById('xpProgress').style.width = xpProgress + '%';
         }
 
-        typeWriter();
+        function addXP(amount) {
+            state.xp += amount;
+            const xpNeeded = state.level * 100;
 
-        // ========== PHONE SCREEN SWITCHER ==========
-        let phoneTimerInterval;
-        let phoneSeconds = 120;
-
-        function switchPhoneScreen(screenNum) {
-            // Clear previous timer
-            if (phoneTimerInterval) {
-                clearInterval(phoneTimerInterval);
+            if (state.xp >= xpNeeded) {
+                state.xp -= xpNeeded;
+                state.level++;
+                // Notifikasi naik level
+                setTimeout(() => {
+                    alert(`🎉 LEVEL UP! Lo sekarang level ${state.level}!\n\n"Mulai pelan-pelan, naik terus."`);
+                }, 500);
             }
 
-            // Hide all screens
-            document.querySelectorAll('.app-screen').forEach(s => s.classList.remove('active'));
-
-            // Show selected screen
-            const targetScreen = document.getElementById('screen' + screenNum);
-            targetScreen.classList.add('active');
-
-            // Screen-specific actions
-            if (screenNum === 2) {
-                startPhoneTimer();
-            } else if (screenNum === 3) {
-                launchConfetti();
-                document.getElementById('timerText').textContent = '00:00';
-            } else if (screenNum === 1) {
-                phoneSeconds = 120;
-                document.getElementById('timerText').textContent = '02:00';
-                document.getElementById('timerCircle').style.strokeDashoffset = '0';
-            }
+            localStorage.setItem('mulaiAjaXP', state.xp);
+            localStorage.setItem('mulaiAjaLevel', state.level);
+            updateLevelDisplay();
         }
 
-        function startPhoneTimer() {
-            phoneSeconds = 120;
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function startTimer() {
+            // Validasi input
+            const taskName = document.getElementById('taskName').value.trim();
+            if (!taskName) {
+                alert('Isi dulu tugasnya dong! Gak usah malu.');
+                document.getElementById('taskName').focus();
+                return;
+            }
+
+            // Simpan data
+            state.currentTask = taskName;
+            state.taskDifficulty = parseInt(document.getElementById('difficulty').value);
+            state.taskDesc = document.getElementById('taskDesc').value.trim();
+            state.estTime = parseInt(document.getElementById('estTime').value);
+            state.timerSeconds = 120; // 2 menit
+            state.totalSessions++;
+            localStorage.setItem('mulaiAjaSessions', state.totalSessions);
+
+            // Update UI
+            document.getElementById('activeTask').textContent = state.currentTask;
+            document.getElementById('activeDifficulty').textContent =
+                `Tingkat kesulitan: ${state.taskDifficulty}/10 | Estimasi: ${state.estTime} menit`;
+
+            // Switch screen
+            document.getElementById('inputScreen').style.display = 'none';
+            document.getElementById('timerScreen').style.display = 'block';
+            document.getElementById('completionMessage').style.display = 'none';
+            document.getElementById('btnLanjut').classList.add('hidden');
+
+            // Set motivasi random
+            document.getElementById('motivationText').textContent = getRandomItem(motivations);
+
+            // Start timer
+            state.isRunning = true;
             updateTimerDisplay();
 
-            phoneTimerInterval = setInterval(() => {
-                phoneSeconds--;
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds--;
                 updateTimerDisplay();
 
-                // Update motivation text
-                const motivations = [
-                    "Lo cuma perlu 2 menit doang. Gak usah mikir hasil.",
-                    "Buka aja dulu bukunya. Itu udah menang.",
-                    "Gak usah bagus, yang penting mulai dulu.",
-                    "Inget: otak lo cuma takut mulai, bukan takut ngerjain.",
-                    "Satu langkah kecil = 100x lebih baik dari diam."
-                ];
-
-                if (phoneSeconds % 30 === 0) {
-                    document.getElementById('motivationText').textContent =
-                        motivations[Math.floor(Math.random() * motivations.length)];
+                // Update motivasi setiap 30 detik
+                if (state.timerSeconds % 30 === 0 && state.timerSeconds > 0) {
+                    document.getElementById('motivationText').textContent = getRandomItem(motivations);
                 }
 
-                if (phoneSeconds <= 0) {
-                    clearInterval(phoneTimerInterval);
-                    setTimeout(() => switchPhoneScreen(3), 500);
+                if (state.timerSeconds <= 0) {
+                    completeTimer();
                 }
             }, 1000);
         }
 
         function updateTimerDisplay() {
-            const mins = Math.floor(phoneSeconds / 60);
-            const secs = phoneSeconds % 60;
-            document.getElementById('timerText').textContent =
-                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-
-            // Update circle progress
-            const circumference = 2 * Math.PI * 90; // 2πr where r=90
-            const progress = phoneSeconds / 120;
-            const offset = circumference * (1 - progress);
-            document.getElementById('timerCircle').style.strokeDasharray = circumference;
-            document.getElementById('timerCircle').style.strokeDashoffset = offset;
+            const minutes = Math.floor(state.timerSeconds / 60);
+            const seconds = state.timerSeconds % 60;
+            document.getElementById('timerDisplay').textContent =
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
 
-        function updateSlider() {
-            const value = document.getElementById('difficultySlider').value;
-            document.getElementById('sliderValue').textContent = value + '/10';
-        }
+        function completeTimer() {
+            clearInterval(state.timerInterval);
+            state.isRunning = false;
 
-        // ========== CONFETTI ==========
-        function launchConfetti() {
-            const container = document.getElementById('confettiContainer');
-            const confettiColors = ['#667eea', '#764ba2', '#ffd43b', '#51cf66', '#ff6b6b', '#ffa502', '#ff6348', '#7bed9f'];
-
-            // Clear previous confetti
-            container.innerHTML = '';
-
-            // Create confetti pieces
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti-piece';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.top = -(Math.random() * 20) + '%';
-                confetti.style.width = (Math.random() * 10 + 5) + 'px';
-                confetti.style.height = (Math.random() * 10 + 5) + 'px';
-                confetti.style.background = confettiColors[Math.floor(Math.random() * confettiColors.length)];
-                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-
-                container.appendChild(confetti);
+            // Hitung XP
+            let xpEarned = 20; // Base XP
+            if (state.taskDifficulty <= 3) {
+                xpEarned += 10; // Bonus karena tugas gampang tapi tetep mulai
             }
 
-            // Clean up confetti
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 3000);
+            document.getElementById('xpEarned').textContent = `+${xpEarned} XP`;
+            document.getElementById('completionText').textContent = getRandomItem(completions);
+
+            // Tampilkan completion
+            document.getElementById('completionMessage').style.display = 'block';
+            document.getElementById('motivationText').style.display = 'none';
+            document.getElementById('btnLanjut').classList.remove('hidden');
+
+            addXP(xpEarned);
+
+            // Update timer display
+            document.getElementById('timerDisplay').textContent = '00:00';
+            document.getElementById('timerDisplay').style.color = '#51cf66';
         }
 
-        // ========== BUTTON RIPPLE EFFECT ==========
-        document.querySelectorAll('.btn-mulai, .cta-button').forEach(button => {
-            button.addEventListener('click', function (e) {
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple';
+        function stopTimer() {
+            if (state.isRunning) {
+                clearInterval(state.timerInterval);
+                state.isRunning = false;
 
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                const elapsedSeconds = 120 - state.timerSeconds;
 
-                this.appendChild(ripple);
+                if (elapsedSeconds < 10) {
+                    // Belum ada progress berarti
+                    document.getElementById('completionText').textContent =
+                        `Lo udah mulai ${elapsedSeconds} detik. Gak papa, nanti coba lagi.`;
+                    document.getElementById('xpEarned').textContent = '+5 XP (jujur berhenti)';
+                    addXP(5);
+                } else {
+                    // Ada progress
+                    const xpEarned = Math.floor(elapsedSeconds / 6);
+                    document.getElementById('xpEarned').textContent = `+${xpEarned} XP`;
+                    document.getElementById('completionText').textContent =
+                        `Lo udah maju ${elapsedSeconds} detik. Itu kemajuan, bukan kegagalan.`;
+                    addXP(xpEarned);
+                }
 
-                setTimeout(() => ripple.remove(), 600);
-            });
+                document.getElementById('completionMessage').style.display = 'block';
+                document.getElementById('motivationText').style.display = 'none';
+                document.getElementById('timerDisplay').style.color = '#ff6b6b';
+                document.getElementById('btnLanjut').classList.add('hidden');
+            }
+        }
+
+        function continueTimer() {
+            // Reset timer screen untuk lanjutan
+            state.timerSeconds = 300; // 5 menit tambahan
+            document.getElementById('completionMessage').style.display = 'none';
+            document.getElementById('motivationText').style.display = 'block';
+            document.getElementById('timerDisplay').style.color = '#667eea';
+            document.getElementById('btnLanjut').classList.add('hidden');
+            document.getElementById('motivationText').textContent = 'Nah gitu dong! 5 menit lagi ya. Lo pasti bisa.';
+
+            state.isRunning = true;
+            updateTimerDisplay();
+
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds--;
+                updateTimerDisplay();
+
+                if (state.timerSeconds <= 0) {
+                    completeTimer();
+                    document.getElementById('btnLanjut').classList.add('hidden');
+                }
+            }, 1000);
+        }
+
+        function resetApp() {
+            // Reset semua
+            clearInterval(state.timerInterval);
+            state.isRunning = false;
+            state.timerSeconds = 120;
+
+            document.getElementById('inputScreen').style.display = 'block';
+            document.getElementById('timerScreen').style.display = 'none';
+            document.getElementById('timerDisplay').style.color = '#667eea';
+            document.getElementById('taskName').value = '';
+            document.getElementById('taskDesc').value = '';
+            document.getElementById('difficulty').value = 5;
+            document.getElementById('difficultyValue').textContent = '5';
+            document.getElementById('estTime').value = 20;
+
+            updateLevelDisplay();
+        }
+
+        // Update difficulty slider value
+        document.getElementById('difficulty').addEventListener('input', function () {
+            document.getElementById('difficultyValue').textContent = this.value;
         });
 
-        // ========== STATS COUNTER ANIMATION ==========
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-
-            statNumbers.forEach(stat => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                const duration = 2000;
-                const start = performance.now();
-
-                function update(currentTime) {
-                    const elapsed = currentTime - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
-                    stat.textContent = Math.floor(eased * target).toLocaleString();
-
-                    if (progress < 1) {
-                        requestAnimationFrame(update);
-                    } else {
-                        stat.textContent = target.toLocaleString();
-                    }
+        // Keyboard shortcut: Ctrl+Enter untuk mulai
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                if (document.getElementById('inputScreen').style.display !== 'none') {
+                    startTimer();
                 }
-
-                requestAnimationFrame(update);
-            });
-        }
-
-        // Intersection Observer untuk stats
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        const statsSection = document.querySelector('.stats-section');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // ========== SCROLL TO DEMO ==========
-        function scrollToDemo() {
-            const phone = document.querySelector('.phone-mockup');
-            phone.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Pulse animation on phone
-            phone.style.animation = 'none';
-            phone.offsetHeight;
-            phone.style.animation = 'floatPhone 0.5s ease 3';
-            setTimeout(() => {
-                phone.style.animation = 'floatPhone 6s ease infinite';
-            }, 1500);
-        }
-
-        // ========== PARALLAX EFFECT ON SCROLL ==========
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroBg = document.querySelector('.hero-bg');
-
-            if (heroBg) {
-                heroBg.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
 
-        // ========== INITIAL SETUP ==========
-        // Set initial timer circle
-        const circumference = 2 * Math.PI * 90;
-        document.getElementById('timerCircle').style.strokeDasharray = circumference;
-        document.getElementById('timerCircle').style.strokeDashoffset = '0';
+        // ========== INIT ==========
+        updateLevelDisplay();
+
+        // Tampilkan statistik jika sudah pernah pakai
+        if (state.totalSessions > 0) {
+            console.log(`📊 Statistik MulaiAja:
+🔄 Total sesi: ${state.totalSessions}
+⭐ XP: ${state.xp}
+🦋 Level: ${state.level}
+            `);
+        }
     </script>
 </body>
 
