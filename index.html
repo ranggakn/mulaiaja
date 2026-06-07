@@ -414,7 +414,7 @@
                 state.level++;
                 // Notifikasi naik level
                 setTimeout(() => {
-                    alert(`🎉 LEVEL UP! Lo sekarang level ${state.level}!\n\n"Mulai pelan-pelan, naik terus."`);
+                    alert(`🎉 LEVEL UP! Kamu sekarang level ${state.level}!\n\n"Mulai pelan-pelan, naik terus."`);
                 }, 500);
             }
 
@@ -431,7 +431,7 @@
             // Validasi input
             const taskName = document.getElementById('taskName').value.trim();
             if (!taskName) {
-                alert('Isi dulu tugasnya dong! Gak usah malu.');
+                alert('Isi dulu tugasnya, gak usah malu');
                 document.getElementById('taskName').focus();
                 return;
             }
