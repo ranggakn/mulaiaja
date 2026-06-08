@@ -1,7 +1,7 @@
 {
     "name": "MulaiAja",
     "short_name": "MulaiAja",
-    "start_url": "/?home=true",
+    "start_url": "/mulaiaja/index.html",
     "icons": [
         {
             "src": "icons/manifest-icon-192.maskable.png",
@@ -30,6 +30,6 @@
     ],
     "theme_color": "#000000",
     "background_color": "#FFFFFF",
-    "display": "fullscreen",
+    "display": "standalone",
     "orientation": "portrait"
 }
