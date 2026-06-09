@@ -26,7 +26,7 @@
     <string name="fullScopeUrl" translatable="false">https://ranggakn.github.io/mulaiaja/</string>
     <string name="generatorApp" translatable="false">bubblewrap-cli</string>
     <string name="hostName" translatable="false">ranggakn.github.io</string>
-    <string name="launchUrl" translatable="false">https://ranggakn.github.io/mulaiaja-pwa/index.html</string>
+    <string name="launchUrl" translatable="false">https://ranggakn.github.io/mulaiaja/index.html</string>
     <string name="launcherName" translatable="false">MulaiAja</string>
     <string name="orientation" translatable="false">portrait</string>
     <string name="providerAuthority" translatable="false">com.ranggakn.mulaiaja.fileprovider</string>

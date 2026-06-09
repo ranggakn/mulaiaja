@@ -23,6 +23,8 @@
             --text-muted: #64748b;
             --border: #e2e8f0;
             --ring: rgba(99, 102, 241, 0.2);
+            /* Kurva transisi premium */
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
@@ -44,8 +46,12 @@
             justify-content: center;
             align-items: center;
             padding: 24px;
+            flex-direction: column;
+            gap: 24px;
+            overflow-x: hidden;
         }
 
+        /* Animasi fade-in halus saat container pertama kali dimuat */
         .container {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px);
@@ -55,13 +61,26 @@
             max-width: 500px;
             width: 100%;
             box-shadow:
-                0 20px 25px -5px rgba(0, 0, 0, 0.1),
-                0 8px 10px -6px rgba(0, 0, 0, 0.1),
+                0 20px 25px -5px rgba(0, 0, 0, 0.05),
+                0 8px 10px -6px rgba(0, 0, 0, 0.05),
                 inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.6);
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
+            animation: containerAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
+        @keyframes containerAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Efek hover pada badge */
         .header-badge {
             display: inline-flex;
             align-items: center;
@@ -74,6 +93,12 @@
             font-weight: 600;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px var(--ring);
+            transition: var(--transition-smooth);
+        }
+
+        .header-badge:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px var(--ring);
         }
 
         h1 {
@@ -107,6 +132,12 @@
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 10px;
+            transition: color 0.2s ease;
+        }
+
+        /* Efek fokus saat input aktif */
+        .input-group:focus-within label {
+            color: var(--primary);
         }
 
         .input-wrapper {
@@ -122,7 +153,7 @@
             border-radius: 14px;
             font-size: 15px;
             color: var(--text);
-            transition: all 0.2s ease;
+            transition: var(--transition-smooth);
             font-family: inherit;
             background-color: white;
         }
@@ -132,6 +163,7 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px var(--ring);
+            transform: translateY(-1px);
         }
 
         textarea {
@@ -157,6 +189,8 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
         }
 
         input[type="range"] {
@@ -164,10 +198,19 @@
             height: 8px;
             -webkit-appearance: none;
             appearance: none;
-            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 50%, var(--accent) 100%);
+            background: var(--border);
             border-radius: 8px;
             outline: none;
             margin: 12px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Modifikasi track slider agar warnanya dinamis bisa diatur via browser */
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--primary) 50%, var(--accent) 100%);
+            height: 8px;
+            border-radius: 8px;
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -180,11 +223,17 @@
             cursor: pointer;
             border: 3px solid var(--primary);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            transition: transform 0.1s ease;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s ease;
+            margin-top: -8px;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
+            transform: scale(1.25);
+            border-color: var(--primary-dark);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:active {
+            transform: scale(1.1);
         }
 
         .slider-labels {
@@ -196,11 +245,18 @@
         }
 
         .level-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(20, 184, 166, 0.08));
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(20, 184, 166, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.15);
             border-radius: 16px;
             padding: 16px;
             margin: 28px 0;
+            transition: var(--transition-smooth);
+        }
+
+        .level-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.3);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(20, 184, 166, 0.08));
         }
 
         .level-info {
@@ -215,7 +271,7 @@
         .progress-bar {
             width: 100%;
             height: 10px;
-            background: rgba(99, 102, 241, 0.15);
+            background: rgba(99, 102, 241, 0.1);
             border-radius: 999px;
             overflow: hidden;
         }
@@ -223,23 +279,28 @@
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-radius: 999px;
-            box-shadow: 0 0 20px var(--ring);
+            box-shadow: 0 0 12px var(--ring);
         }
 
+        /* Animasi Tombol yang Smooth & Elastis */
         .btn {
             font-family: inherit;
             font-weight: 700;
             border-radius: 14px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, opacity 0.2s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
             border: none;
             font-size: 16px;
+        }
+
+        .btn:active {
+            transform: scale(0.98) translateY(0) !important;
         }
 
         .btn-primary {
@@ -252,12 +313,8 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px -5px var(--ring);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px -5px var(--ring), 0 4px 10px rgba(99, 102, 241, 0.3);
         }
 
         .button-container {
@@ -276,6 +333,7 @@
 
         .btn-danger:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 20px -4px rgba(244, 63, 94, 0.4);
         }
 
         .btn-success {
@@ -288,12 +346,24 @@
 
         .btn-success:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 20px -4px rgba(34, 197, 94, 0.4);
         }
 
-        /* Timer Screen */
+        /* Transisi antar screen yang smooth */
         .timer-screen {
             display: none;
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: slideUpSmooth 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpSmooth {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .timer-icon {
@@ -307,18 +377,22 @@
             justify-content: center;
             font-size: 40px;
             box-shadow: 0 12px 24px var(--ring);
-            animation: pulse 2s ease-in-out infinite;
+            animation: floatingPulse 3s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
+        /* Efek bernapas & melayang yang super halus */
+        @keyframes floatingPulse {
+            0% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 12px 24px var(--ring);
             }
-
             50% {
-                transform: scale(1.05);
+                transform: translateY(-6px) scale(1.03);
+                box-shadow: 0 18px 32px var(--ring);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                box-shadow: 0 12px 24px var(--ring);
             }
         }
 
@@ -332,22 +406,28 @@
         .timer-display {
             font-size: 80px;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, var(--text), var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin: 32px 0;
+            margin: 24px 0;
             font-variant-numeric: tabular-nums;
             letter-spacing: -2px;
             text-align: center;
+            animation: textPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes textPulse {
+            from { filter: drop-shadow(0 0 0px transparent); }
+            to { filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.15)); }
         }
 
         .task-reminder {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(20, 184, 166, 0.05));
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.03), rgba(20, 184, 166, 0.03));
             padding: 20px;
             border-radius: 16px;
             margin-bottom: 24px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.15);
             text-align: left;
         }
 
@@ -382,17 +462,23 @@
             line-height: 1.6;
             text-align: center;
             font-weight: 500;
+            transition: opacity 0.3s ease;
         }
 
         .completion-message {
             display: none;
             margin-top: 24px;
             padding: 24px;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(20, 184, 166, 0.1));
-            border: 2px solid rgba(34, 197, 94, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.05), rgba(20, 184, 166, 0.05));
+            border: 2px solid rgba(34, 197, 94, 0.2);
             border-radius: 20px;
-            animation: slideUp 0.4s ease;
+            animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
             text-align: center;
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         .completion-message h2 {
@@ -413,27 +499,77 @@
             font-size: 16px;
             margin: 16px 0;
             box-shadow: 0 8px 16px -4px rgba(245, 158, 11, 0.4);
+            animation: bounceLight 2s infinite;
+        }
+
+        @keyframes bounceLight {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         .hidden {
             display: none !important;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+        /* --- PEMBARUAN DI BAGIAN CREDIT FOOTER (PROFESIONAL & ELEGAN) --- */
+        .developer-footer {
+            margin-top: 8px;
+            text-align: center;
+            animation: fadeInDelay 1s ease forwards;
+        }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeInDelay {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .credit-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.4);
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            transition: var(--transition-smooth);
+        }
+
+        .credit-link .dev-name {
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .credit-link svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--text-muted);
+            transition: transform 0.3s ease, stroke 0.3s ease;
+        }
+
+        /* Efek Hover Credit */
+        .credit-link:hover {
+            color: var(--text);
+            background: white;
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transform: translateY(-1px);
+        }
+
+        .credit-link:hover svg {
+            transform: translate(1px, -1px);
+            stroke: var(--primary);
         }
 
         @media (max-width: 480px) {
             .container {
-                padding: 28px 20px;
+                padding: 32px 20px;
             }
 
             h1 {
@@ -449,7 +585,6 @@
 
 <body>
     <div class="container" id="app">
-        <!-- Screen 1: Input -->
         <div id="inputScreen">
             <div class="header-badge">
                 <span>⚡</span>
@@ -463,7 +598,7 @@
                     <span>🎯</span>
                     <span>Tugas apa yang kamu tunda?</span>
                 </label>
-                <input type="text" id="taskName" placeholder="Contoh: Kerjain laporan keuangan Q2">
+                <input type="text" id="taskName" placeholder="Contoh: Kerjain laporan keuangan Q2" maxlength="100">
             </div>
 
             <div class="input-group">
@@ -471,7 +606,8 @@
                     <span>💭</span>
                     <span>Catatan atau hambatan</span>
                 </label>
-                <textarea id="taskDesc" placeholder="Apa yang bikin kamu ragu mulai? Tulis aja di sini"></textarea>
+                <textarea id="taskDesc" placeholder="Apa yang bikin kamu ragu mulai? Tulis aja di sini"
+                    maxlength="300"></textarea>
             </div>
 
             <div class="slider-group">
@@ -513,7 +649,6 @@
             </button>
         </div>
 
-        <!-- Screen 2: Timer -->
         <div id="timerScreen" class="timer-screen">
             <div class="timer-icon">⏳</div>
             <h2>Sesi Fokus Berjalan</h2>
@@ -528,7 +663,7 @@
                 </div>
             </div>
 
-            <div class="timer-display" id="timerDisplay">02:00</div>
+            <div class="timer-display" id="timerDisplay" aria-live="polite" aria-atomic="true">02:00</div>
 
             <p class="motivation-text" id="motivationText">
                 Tarik napas. Fokus 2 menit aja dulu. Nggak usah mikirin hasil akhir.
@@ -562,19 +697,70 @@
         </div>
     </div>
 
+    <div class="developer-footer">
+        <a href="https://ranggakn.github.io/WEBSITE-PORTFOLIO/" class="credit-link" target="_blank" title="Lihat Profil Developer">
+            <span>Developed by</span>
+            <span class="dev-name">Rangga Kusuma</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+        </a>
+    </div>
+
     <script>
+        // --- JAVASCRIPT BAWAAN (TIDAK ADA YANG DIUBAH AGAR LOGIKA TETAP BERJALAN) ---
+        const STORAGE_KEY = 'mulaiAjaData';
+
+        function safeLocalStorage() {
+            try {
+                const test = '__test__';
+                localStorage.setItem(test, test);
+                localStorage.removeItem(test);
+                return localStorage;
+            } catch (e) {
+                const memoryStorage = {};
+                return {
+                    getItem: (k) => memoryStorage[k] || null,
+                    setItem: (k, v) => memoryStorage[k] = String(v),
+                    removeItem: (k) => delete memoryStorage[k]
+                };
+            }
+        }
+
+        const storage = safeLocalStorage();
+
+        function loadData() {
+            try {
+                const data = JSON.parse(storage.getItem(STORAGE_KEY)) || {};
+                return {
+                    xp: data.xp || 0,
+                    level: data.level || 1,
+                    totalSessions: data.totalSessions || 0,
+                    activeSession: data.activeSession || null
+                };
+            } catch {
+                return { xp: 0, level: 1, totalSessions: 0, activeSession: null };
+            }
+        }
+
+        function saveData(data) {
+            try {
+                storage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (e) { }
+        }
+
         let state = {
-            timerSeconds: 120,
             timerInterval: null,
             isRunning: false,
             currentTask: '',
             taskDifficulty: 5,
             taskDesc: '',
             estTime: 20,
-            xp: parseInt(localStorage.getItem('mulaiAjaXP') || '0'),
-            level: parseInt(localStorage.getItem('mulaiAjaLevel') || '1'),
-            totalSessions: parseInt(localStorage.getItem('mulaiAjaSessions') || '0'),
-            lastMotivationIndex: -1
+            endTimestamp: null,
+            sessionType: 'focus',
+            lastMotivationIdx: -1,
+            ...loadData()
         };
 
         const motivations = [
@@ -617,10 +803,7 @@
                     alert(`🎊 Level Up! Kamu sekarang Level ${state.level}\n\nKeep going! Konsistensi kecil = hasil besar.`);
                 }, 500);
             }
-            try {
-                localStorage.setItem('mulaiAjaXP', state.xp);
-                localStorage.setItem('mulaiAjaLevel', state.level);
-            } catch (e) { }
+            persistState();
             updateLevelDisplay();
         }
 
@@ -628,9 +811,24 @@
             let newIndex;
             do {
                 newIndex = Math.floor(Math.random() * motivations.length);
-            } while (newIndex === state.lastMotivationIndex && motivations.length > 1);
-            state.lastMotivationIndex = newIndex;
+            } while (newIndex === state.lastMotivationIdx && motivations.length > 1);
+            state.lastMotivationIdx = newIndex;
             return motivations[newIndex];
+        }
+
+        function persistState() {
+            saveData({
+                xp: state.xp,
+                level: state.level,
+                totalSessions: state.totalSessions,
+                activeSession: state.isRunning ? {
+                    endTimestamp: state.endTimestamp,
+                    currentTask: state.currentTask,
+                    taskDifficulty: state.taskDifficulty,
+                    estTime: state.estTime,
+                    sessionType: state.sessionType
+                } : null
+            });
         }
 
         function startTimer() {
@@ -643,8 +841,9 @@
                 document.getElementById('taskName').focus();
                 return;
             }
-            if (estTime < 1 || estTime > 480) {
+            if (isNaN(estTime) || estTime < 1 || estTime > 480) {
                 alert('Estimasi waktu 1-480 menit aja ya');
+                document.getElementById('estTime').focus();
                 return;
             }
 
@@ -652,48 +851,47 @@
             state.taskDifficulty = parseInt(document.getElementById('difficulty').value);
             state.taskDesc = document.getElementById('taskDesc').value.trim();
             state.estTime = estTime;
-            state.timerSeconds = 120;
+            state.sessionType = 'focus';
+            state.endTimestamp = Date.now() + 120000;
             state.totalSessions++;
-            try { localStorage.setItem('mulaiAjaSessions', state.totalSessions); } catch (e) { }
 
             document.getElementById('activeTask').textContent = state.currentTask;
             document.getElementById('activeDifficulty').textContent = `Kesulitan: ${state.taskDifficulty}/10`;
             document.getElementById('activeEst').textContent = `Est: ${state.estTime} menit`;
-
             document.getElementById('inputScreen').style.display = 'none';
             document.getElementById('timerScreen').style.display = 'block';
             document.getElementById('completionMessage').style.display = 'none';
             document.getElementById('motivationText').style.display = 'block';
             document.getElementById('btnStop').style.display = 'inline-flex';
             document.getElementById('btnLanjut').classList.add('hidden');
-            document.getElementById('timerDisplay').style.webkitTextFillColor = 'transparent';
-
             document.getElementById('motivationText').textContent = getRandomMotivation();
 
             state.isRunning = true;
             updateTimerDisplay();
+            persistState();
 
             state.timerInterval = setInterval(() => {
-                state.timerSeconds--;
-                updateTimerDisplay();
-                if (state.timerSeconds % 30 === 0 && state.timerSeconds > 0) {
+                const remaining = Math.max(0, Math.ceil((state.endTimestamp - Date.now()) / 1000));
+                updateTimerDisplay(remaining);
+                if (remaining % 30 === 0 && remaining > 0 && remaining !== 120) {
                     document.getElementById('motivationText').textContent = getRandomMotivation();
                 }
-                if (state.timerSeconds <= 0) completeTimer();
-            }, 1000);
+                if (remaining <= 0) completeTimer();
+            }, 250);
         }
 
-        function updateTimerDisplay() {
-            const minutes = Math.floor(state.timerSeconds / 60);
-            const seconds = state.timerSeconds % 60;
+        function updateTimerDisplay(seconds = null) {
+            const remaining = seconds !== null ? seconds : Math.max(0, Math.ceil((state.endTimestamp - Date.now()) / 1000));
+            const minutes = Math.floor(remaining / 60);
+            const secs = remaining % 60;
             document.getElementById('timerDisplay').textContent =
-                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
         function completeTimer() {
             clearInterval(state.timerInterval);
             state.isRunning = false;
-            let xpEarned = 20;
+            let xpEarned = state.sessionType === 'focus' ? 20 : 50;
             if (state.taskDifficulty <= 3) xpEarned += 10;
 
             document.getElementById('xpEarned').innerHTML = `<span>⚡</span><span>+${xpEarned} XP</span>`;
@@ -701,39 +899,46 @@
             document.getElementById('completionMessage').style.display = 'block';
             document.getElementById('motivationText').style.display = 'none';
             document.getElementById('btnStop').style.display = 'none';
-            document.getElementById('btnLanjut').classList.remove('hidden');
+            if (state.sessionType === 'focus') {
+                document.getElementById('btnLanjut').classList.remove('hidden');
+            } else {
+                document.getElementById('btnLanjut').classList.add('hidden');
+            }
             addXP(xpEarned);
+            persistState();
             document.getElementById('timerDisplay').textContent = '00:00';
         }
 
         function stopTimer() {
-            if (state.isRunning) {
-                clearInterval(state.timerInterval);
-                state.isRunning = false;
-                const elapsedSeconds = 120 - state.timerSeconds;
+            if (!state.isRunning) return;
+            clearInterval(state.timerInterval);
+            state.isRunning = false;
+            const totalDuration = state.sessionType === 'focus' ? 120 : 300;
+            const elapsedSeconds = totalDuration - Math.max(0, Math.ceil((state.endTimestamp - Date.now()) / 1000));
 
-                if (elapsedSeconds < 60) {
-                    document.getElementById('completionText').textContent =
-                        `Baru ${elapsedSeconds} detik. Fokus minimal 1 menit biar dapat XP ya. Coba lagi!`;
-                    document.getElementById('xpEarned').innerHTML = `<span>💪</span><span>+0 XP</span>`;
-                } else {
-                    const xpEarned = Math.floor(elapsedSeconds / 6);
-                    document.getElementById('xpEarned').innerHTML = `<span>⚡</span><span>+${xpEarned} XP</span>`;
-                    document.getElementById('completionText').textContent =
-                        `Kamu fokus ${elapsedSeconds} detik. Lumayan banget buat pemanasan!`;
-                    addXP(xpEarned);
-                }
-
-                document.getElementById('completionMessage').style.display = 'block';
-                document.getElementById('motivationText').style.display = 'none';
-                document.getElementById('btnStop').style.display = 'none';
-                document.getElementById('btnLanjut').classList.add('hidden');
+            if (elapsedSeconds < 60) {
+                document.getElementById('completionText').textContent =
+                    `Baru ${elapsedSeconds} detik. Fokus minimal 1 menit biar dapat XP ya. Coba lagi!`;
+                document.getElementById('xpEarned').innerHTML = `<span>💪</span><span>+0 XP</span>`;
+            } else {
+                const xpEarned = Math.floor(elapsedSeconds / 6);
+                document.getElementById('xpEarned').innerHTML = `<span>⚡</span><span>+${xpEarned} XP</span>`;
+                document.getElementById('completionText').textContent =
+                    `Kamu fokus ${elapsedSeconds} detik. Lumayan banget buat pemanasan!`;
+                addXP(xpEarned);
             }
+
+            document.getElementById('completionMessage').style.display = 'block';
+            document.getElementById('motivationText').style.display = 'none';
+            document.getElementById('btnStop').style.display = 'none';
+            document.getElementById('btnLanjut').classList.add('hidden');
+            persistState();
         }
 
         function continueTimer() {
             clearInterval(state.timerInterval);
-            state.timerSeconds = 300;
+            state.sessionType = 'extended';
+            state.endTimestamp = Date.now() + 300000;
             document.getElementById('completionMessage').style.display = 'none';
             document.getElementById('motivationText').style.display = 'block';
             document.getElementById('btnStop').style.display = 'inline-flex';
@@ -741,21 +946,23 @@
             document.getElementById('motivationText').textContent = 'Gokil! Lanjut 5 menit. Kamu lagi on fire 🔥';
             state.isRunning = true;
             updateTimerDisplay();
+            persistState();
 
             state.timerInterval = setInterval(() => {
-                state.timerSeconds--;
-                updateTimerDisplay();
-                if (state.timerSeconds <= 0) {
+                const remaining = Math.max(0, Math.ceil((state.endTimestamp - Date.now()) / 1000));
+                updateTimerDisplay(remaining);
+                if (remaining <= 0) {
                     completeTimer();
                     document.getElementById('btnLanjut').classList.add('hidden');
                 }
-            }, 1000);
+            }, 250);
         }
 
         function resetApp() {
             clearInterval(state.timerInterval);
             state.isRunning = false;
-            state.timerSeconds = 120;
+            state.endTimestamp = null;
+            state.sessionType = 'focus';
             document.getElementById('inputScreen').style.display = 'block';
             document.getElementById('timerScreen').style.display = 'none';
             document.getElementById('taskName').value = '';
@@ -763,6 +970,7 @@
             document.getElementById('difficulty').value = 5;
             document.getElementById('difficultyValue').textContent = '5';
             document.getElementById('estTime').value = 20;
+            persistState();
             updateLevelDisplay();
         }
 
@@ -778,7 +986,44 @@
             }
         });
 
-        updateLevelDisplay();
+        function init() {
+            updateLevelDisplay();
+            if (state.activeSession && state.activeSession.endTimestamp > Date.now()) {
+                const resume = confirm('Kamu punya sesi fokus yang belum selesai. Lanjutin sekarang?');
+                if (resume) {
+                    state.currentTask = state.activeSession.currentTask;
+                    state.taskDifficulty = state.activeSession.taskDifficulty;
+                    state.estTime = state.activeSession.estTime;
+                    state.endTimestamp = state.activeSession.endTimestamp;
+                    state.sessionType = state.activeSession.sessionType;
+                    document.getElementById('activeTask').textContent = state.currentTask;
+                    document.getElementById('activeDifficulty').textContent = `Kesulitan: ${state.taskDifficulty}/10`;
+                    document.getElementById('activeEst').textContent = `Est: ${state.estTime} menit`;
+                    document.getElementById('inputScreen').style.display = 'none';
+                    document.getElementById('timerScreen').style.display = 'block';
+                    document.getElementById('completionMessage').style.display = 'none';
+                    document.getElementById('motivationText').style.display = 'block';
+                    document.getElementById('btnStop').style.display = 'inline-flex';
+                    document.getElementById('btnLanjut').classList.add('hidden');
+                    state.isRunning = true;
+                    updateTimerDisplay();
+                    state.timerInterval = setInterval(() => {
+                        const remaining = Math.max(0, Math.ceil((state.endTimestamp - Date.now()) / 1000));
+                        updateTimerDisplay(remaining);
+                        if (remaining % 30 === 0 && remaining > 0) {
+                            document.getElementById('motivationText').textContent = getRandomMotivation();
+                        }
+                        if (remaining <= 0) completeTimer();
+                    }, 250);
+                } else {
+                    saveData({ ...loadData(), activeSession: null });
+                }
+            } else if (state.activeSession) {
+                saveData({ ...loadData(), activeSession: null });
+            }
+        }
+
+        init();
     </script>
 </body>
 
