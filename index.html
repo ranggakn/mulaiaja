@@ -74,6 +74,7 @@
                 opacity: 0;
                 transform: translateY(20px) scale(0.98);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0) scale(1);
@@ -360,6 +361,7 @@
                 opacity: 0;
                 transform: translateY(15px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -386,10 +388,12 @@
                 transform: translateY(0) scale(1);
                 box-shadow: 0 12px 24px var(--ring);
             }
+
             50% {
                 transform: translateY(-6px) scale(1.03);
                 box-shadow: 0 18px 32px var(--ring);
             }
+
             100% {
                 transform: translateY(0) scale(1);
                 box-shadow: 0 12px 24px var(--ring);
@@ -418,8 +422,13 @@
         }
 
         @keyframes textPulse {
-            from { filter: drop-shadow(0 0 0px transparent); }
-            to { filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.15)); }
+            from {
+                filter: drop-shadow(0 0 0px transparent);
+            }
+
+            to {
+                filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.15));
+            }
         }
 
         .task-reminder {
@@ -477,8 +486,15 @@
         }
 
         @keyframes popIn {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .completion-message h2 {
@@ -503,8 +519,15 @@
         }
 
         @keyframes bounceLight {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
         }
 
         .hidden {
@@ -519,8 +542,15 @@
         }
 
         @keyframes fadeInDelay {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .credit-link {
@@ -698,7 +728,8 @@
     </div>
 
     <div class="developer-footer">
-        <a href="https://ranggakn.github.io/WEBSITE-PORTFOLIO/" class="credit-link" target="_blank" title="Lihat Profil Developer">
+        <a href="https://website-portfolio-k5lq.vercel.app/" class="credit-link" target="_blank"
+            title="Lihat Profil Developer">
             <span>Developed by</span>
             <span class="dev-name">Rangga Kusuma</span>
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
