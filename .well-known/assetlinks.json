@@ -1,0 +1,10 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+        "namespace": "android_app",
+        "package_name": "com.ranggakn.mulaiaja",
+        "sha256_cert_fingerprints": [
+            "CE:3B:6C:D0:2C:58:BC:3B:6C:8F:7A:C7:9C:1D:19:FE:48:ED:91:74:22:E1:92:03:09:7B:D1:99:C0:25:75:85"
+        ]
+    }
+}]
